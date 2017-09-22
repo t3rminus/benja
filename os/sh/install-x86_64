@@ -95,10 +95,14 @@ if [ "$UEFI" != "" ]; then
     fi
   fi
 else
-  if [ "$CURRENT_ARCH" = "x86_64" ]; then
-    UEFI=efi64
+  if [ -e "/sys/firmware/efi" ]; then
+    if [ "$CURRENT_ARCH" = "x86_64" ]; then
+      UEFI=efi64
+    else
+      UEFI=efi32
+    fi
   else
-    UEFI=efi32
+    UEFI=NO
   fi
 fi
 
