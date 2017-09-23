@@ -220,7 +220,7 @@ if [ "$UEFI" != "NO" ]; then
   mkfs.vfat $EFI
   # dosfslabel $APP BENJA-BOOT
 fi
-yes | mkfs.ext4 $ROOT
+yes | mkfs.ext4 -O \^64bit $ROOT
 sync
 ROOT_UUID="$(cat /proc/sys/kernel/random/uuid)"
 # tune2fs -L BENJA-ROOT $ROOT
